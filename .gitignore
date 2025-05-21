@@ -1,0 +1,12 @@
+# Ignore environment variable files
+.env
+.env.*
+
+# Ignore credential files
+credentials.txt
+*.pem
+*.pfx
+
+# Ignore any file with secrets in the name
+*secret*
+*password*
