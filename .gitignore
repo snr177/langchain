@@ -1,12 +1,61 @@
 # Ignore environment variable files
 .env
 .env.*
+*.env
 
-# Ignore credential files
-credentials.txt
+# Ignore credential and secret files
+*.key
 *.pem
 *.pfx
-
-# Ignore any file with secrets in the name
-*secret*
+*.crt
+*.der
+*.csr
+*.cer
+*.p12
+*.jks
+*.keystore
+*.secret
+*secrets*
 *password*
+*credentials*
+
+# Ignore log files
+*.log
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore node modules (for Node.js projects)
+node_modules/
+
+# Ignore Python cache (for Python projects)
+__pycache__/
+*.pyc
+
+# Ignore compiled files
+*.class
+*.o
+*.so
+*.exe
+*.dll
+
+# Ignore IDE/editor folders
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore backup files
+*~
+*.swp
+*.bak
+
+# Ignore test coverage reports
+coverage/
+*.lcov
+
+# Ignore build output
+dist/
+build/
+out/
