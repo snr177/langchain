@@ -2,6 +2,7 @@
 .env
 .env.*
 *.env
+credentials.txt
 
 # Ignore credential and secret files
 *.key
