@@ -4,6 +4,7 @@ from azure.ai.inference import ChatCompletionsClient
 from azure.ai.inference.models import SystemMessage, UserMessage
 from azure.core.credentials import AzureKeyCredential
 from dotenv import load_dotenv
+
 load_dotenv()
 endpoint = "https://models.github.ai/inference"
 model = "meta/Llama-3.2-90B-Vision-Instruct"

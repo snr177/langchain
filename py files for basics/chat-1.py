@@ -15,7 +15,7 @@ model = AzureChatOpenAI(
     api_version=api_version, 
     model=model_name
 )
+
 prompt = input("ASK ANYTHING : ")
 result = model.invoke(prompt)
-
 print(result.content)
