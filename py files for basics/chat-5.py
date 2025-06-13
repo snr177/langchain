@@ -12,8 +12,6 @@ api_key = os.getenv("AZURE_OPENAI_API_KEY")
 model = AzureChatOpenAI(
     azure_deployment=endpoint,
     api_version=api_version,
-    temperature=0.7,
-    max_tokens=100
 )
 chat_history = []  # Use a list to store messages
 
