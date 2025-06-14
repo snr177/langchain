@@ -4,16 +4,17 @@ This directory contains a collection of Python scripts and Jupyter Notebooks des
 
 ## Scripts
 
--   **`chat-1.py`**: (Placeholder: Add a brief description of what this script demonstrates, e.g., "Basic LLM interaction.")
--   **`chat-2.py`**: (Placeholder: Add a brief description, e.g., "Introduction to ChatModels and message types.")
--   **`chat-3.py`**: (Placeholder: Add a brief description, e.g., "Working with Prompt Templates.")
--   **`chat-4.py`**: (Placeholder: Add a brief description, e.g., "Implementing simple chains.")
--   **`chat-5.py`**: Implements a command-line interface (CLI) chatbot using Azure OpenAI. It demonstrates managing chat history and using system messages.
--   **`grok.py`**: (Placeholder: Add a brief description of this script's purpose.)
+-   **`chat-1.py`**: Basic LLM interaction example.
+-   **`chat-2.py`**: Introduction to ChatModels and message types.
+-   **`chat-3.py`**: Working with Prompt Templates.
+-   **`chat-4.py`**: Implementing simple chains and workflows.
+-   **`chat-5.py`**: Command-line chatbot using Azure OpenAI, demonstrating chat history and system messages.
+-   **`grok.py`**: Utility and experimentation scripts for LangChain features.
+-   **`firebase-2.py`**: Entry point for the Firestore-backed Azure OpenAI chatbot (see below for details).
 
 ## Notebooks
 
--   **`notebooks/notebook-1.ipynb`**: A Jupyter Notebook for interactive experimentation with LangChain features, visualizations, or more detailed explorations. (Placeholder: Add more specific details if available, e.g., "Focuses on data loading and RAG.")
+-   **`notebooks/notebook-1.ipynb`**: Interactive experiments with LangChain features, data loading, and retrieval-augmented generation (RAG).
 
 ## Purpose
 
@@ -28,12 +29,15 @@ The primary goal of these files is to provide hands-on examples for learning Lan
     ```powershell
     python chat-1.py
     python chat-5.py
+    python firebase-2.py
     ```
 5.  For the Jupyter Notebook, start a Jupyter server and open `notebooks/notebook-1.ipynb`.
 
 Feel free to modify and experiment with these scripts as you learn!
 
-# Firestore-Backed Azure OpenAI Chatbot
+---
+
+# Firestore-Backed Azure OpenAI Chatbot (`firebase-2.py`)
 
 This script demonstrates how to build a command-line chatbot using Azure OpenAI for conversational AI and Google Firestore for persistent chat history storage. The code is modular, user-friendly, and well-commented for easy understanding and extension.
 
