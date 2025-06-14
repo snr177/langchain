@@ -66,6 +66,28 @@ Welcome! This repository documents practical learning and experimentation with [
 - **Open a notebook:**
     Open `notebooks/notebook-1.ipynb` in Jupyter or VS Code.
 
+## Running with Docker
+
+You can run this project in a containerized environment using Docker. This is useful for consistent deployments and avoiding local dependency issues.
+
+### Build the Docker image
+```powershell
+docker build -t langchain-chatbot .
+```
+
+### Run the CLI chatbot in a container
+```powershell
+docker run --env-file .env -it langchain-chatbot
+```
+
+- The container will start the Firestore-backed Azure OpenAI chatbot by default.
+- To run other scripts or the Streamlit app, override the command. For example:
+  ```powershell
+  docker run --env-file .env -p 8501:8501 langchain-chatbot streamlit run streamlit/main.py
+  ```
+
+> Make sure your `.env` file and any required credentials are available to the container.
+
 ## Screenshots & Demos
 
 Add screenshots or GIFs of your applications in an `images/` folder for better documentation.
