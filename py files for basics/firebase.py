@@ -32,8 +32,8 @@ client = firestore.Client(project=PROJECT_ID)
 # Initialize Firestore Chat Message History
 print("Initializing Firestore Chat Message History...")
 chat_history = FirestoreChatMessageHistory(
-    session_id=SESSION_ID,
-    collection=COLLECTION_NAME,
+    session_id=SESSION_ID, # type: ignore
+    collection=COLLECTION_NAME, # type: ignore
     client=client,
 )
 print("Chat History Initialized.")
