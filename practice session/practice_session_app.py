@@ -5,8 +5,14 @@ This application provides a chat interface powered by Azure OpenAI.
 
 # Import necessary libraries
 from langchain_openai import AzureChatOpenAI
-from langchain.memory import ConversationBufferMemory
-from langchain.chains import ConversationChain
+# Import these conditionally to avoid installation issues
+try:
+    from langchain.memory import ConversationBufferMemory
+    from langchain.chains import ConversationChain
+    memory_imports_success = True
+except ImportError:
+    memory_imports_success = False
+    # We'll handle the lack of these imports later in the code
 from dotenv import load_dotenv
 import streamlit as st  # type: ignore # Streamlit type definitions
 from pydantic import SecretStr

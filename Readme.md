@@ -2,6 +2,22 @@
 
 Welcome! This repository documents practical learning and experimentation with [LangChain](https://python.langchain.com/), OpenAI, and related tools. It includes scripts, notebooks, and web apps for building and exploring language model applications.
 
+## Streamlit Deployment Instructions
+
+To deploy the Streamlit chat application to Streamlit Cloud:
+
+1. Connect this repository to your Streamlit Cloud account
+2. Set `streamlit_app.py` as the main file
+3. Add the following secrets in the Streamlit Cloud dashboard:
+   - `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI endpoint URL
+   - `AZURE_OPENAI_DEPLOYMENT_NAME`: Your deployment name
+   - `AZURE_OPENAI_API_VERSION`: API version (e.g., 2023-05-15)
+   - `AZURE_OPENAI_API_KEY`: Your API key
+
+If you encounter the "Invalid requirement: 'session/requirements.txt'" error:
+1. Make sure you're using the `requirements.txt` file in the root directory
+2. Make sure the Python version is compatible (3.9+ recommended)
+
 ## Project Structure
 
 ```
