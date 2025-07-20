@@ -72,6 +72,15 @@ st.markdown("""
 # Add a title
 st.title("Chat with AI Assistant")
 
+# Add version info and GitHub link in footer
+st.markdown("""
+<div style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: rgba(0,0,0,0.5); padding: 5px; text-align: center;">
+    <a href="https://github.com/snr177/langchain" target="_blank" style="color: #9C9C9C; text-decoration: none;">
+        View on GitHub • v1.0.0
+    </a>
+</div>
+""", unsafe_allow_html=True)
+
 # Sidebar with options
 with st.sidebar:
     st.title("Settings")
@@ -114,24 +123,46 @@ with st.sidebar:
             mime="text/plain",
         )
 
-# Load environment variables from .env file
+# Load environment variables - first try from .env file, then from environment variables
+# This makes it work both locally and on Streamlit Cloud
 load_dotenv()
 
-# Initialize model
-azure_endpoint: Optional[str] = os.getenv("AZURE_OPENAI_ENDPOINT")
-deployment_name: Optional[str] = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME") 
-api_version: Optional[str] = os.getenv("AZURE_OPENAI_API_VERSION")
-api_key: Optional[str] = os.getenv("AZURE_OPENAI_API_KEY")
+# Add a flag to track if we're running on Streamlit Cloud
+on_streamlit_cloud = os.getenv("STREAMLIT_SHARING_MODE") == "streamlit_cloud"
+
+# Initialize model variables - use both .env file and direct environment variables
+# This ensures compatibility with both local development and Streamlit Cloud
+azure_endpoint: Optional[str] = os.environ.get("AZURE_OPENAI_ENDPOINT")
+deployment_name: Optional[str] = os.environ.get("AZURE_OPENAI_DEPLOYMENT_NAME") 
+api_version: Optional[str] = os.environ.get("AZURE_OPENAI_API_VERSION")
+api_key: Optional[str] = os.environ.get("AZURE_OPENAI_API_KEY")
 
 # Check if all environment variables are available
 if not all([azure_endpoint, deployment_name, api_version, api_key]):
-    st.error("Missing required environment variables. Please check your .env file.")
     missing_vars = []
     if not azure_endpoint: missing_vars.append("AZURE_OPENAI_ENDPOINT")
     if not deployment_name: missing_vars.append("AZURE_OPENAI_DEPLOYMENT_NAME")
     if not api_version: missing_vars.append("AZURE_OPENAI_API_VERSION")
     if not api_key: missing_vars.append("AZURE_OPENAI_API_KEY")
-    st.warning(f"Missing variables: {', '.join(missing_vars)}")
+    
+    st.error("⚠️ Missing required environment variables!")
+    
+    # Show different instructions based on deployment environment
+    if on_streamlit_cloud:
+        st.warning("""
+        ### For Streamlit Cloud Deployment:
+        You need to add these secrets in the Streamlit Cloud dashboard:
+        1. Go to your app dashboard
+        2. Click on "Settings" ⚙️ > "Secrets"
+        3. Add the missing environment variables
+        """)
+    else:
+        st.warning("""
+        ### For Local Development:
+        Create or update your .env file with the missing variables.
+        """)
+    
+    st.code(f"Missing variables: {', '.join(missing_vars)}")
     st.stop()
 
 # Initialize session state for storing conversation
@@ -192,7 +223,7 @@ with st.container():
             st.session_state.user_input = ""
             st.session_state.clear_input = False
             
-        user_input = st.text_input("", placeholder="Type your message here...", key="user_input", label_visibility="collapsed").upper()
+        user_input = st.text_input("", placeholder="Type your message here...", key="user_input", label_visibility="collapsed")
     
     with col2:
         submit_button = st.button("Send")
